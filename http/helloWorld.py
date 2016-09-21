@@ -19,8 +19,7 @@ def make_app():
     ])
 
 if __name__ == "__main__":
-    # app = make_app()
-    # app.listen(80)
-    # tornado.ioloop.IOLoop.current().start()
-    l = srv.LikesHandler()
+    app = make_app()
+    app.listen(80)
+    tornado.ioloop.IOLoop.current().start()
 
