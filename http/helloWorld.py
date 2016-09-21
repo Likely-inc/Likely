@@ -19,7 +19,7 @@ class Application(tornado.web.Application):
         ]
         settings = {
             "debug": True,
-            "static_path": os.path.join(os.path.dirname(__file__), "http")
+            "static_path": os.path.join(os.path.dirname(__file__), "src")
         }
         tornado.web.Application.__init__(self, handlers, **settings)
 
@@ -28,7 +28,7 @@ def make_app():
     return Application()
 
 if __name__ == "__main__":
-    app = make_app()
-    app.listen(80)
+    http_server = tornado.httpserver.HTTPServer(Application())
+    http_server.listen(80)
     tornado.ioloop.IOLoop.current().start()
 
