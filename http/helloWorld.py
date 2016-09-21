@@ -19,7 +19,7 @@ class Application(tornado.web.Application):
         ]
         settings = {
             "debug": True,
-            "static_path": os.path.join(os.path.dirname(__file__), "src")
+            # "static_path": os.path.join(os.path.dirname(__file__), "src")
         }
         tornado.web.Application.__init__(self, handlers, **settings)
 
