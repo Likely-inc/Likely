@@ -4,7 +4,6 @@ import tornado.web
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.add_header("Login")
         self.render("index.html")
 
 class AppHandler(tornado.web.RequestHandler):
