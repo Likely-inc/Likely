@@ -5,7 +5,7 @@ import os.path
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render("src/index.html")
+        self.render_string("src/index.html")
 
 class AppHandler(tornado.web.RequestHandler):
     def get(self):
