@@ -10,14 +10,6 @@
    Fonts
    ========================================================================== */
 
-@font-face { font-family: Trampolina-regual; src: url('fonts/FbTrampolina-Regular.otf'); }
-@font-face { font-family: Trampolina-black; src: url('fonts/FbTrampolina-Black.otf'); }
-@font-face { font-family: Trampolina-light; src: url('fonts/FbTrampolina-Light.otf'); }
-@font-face { font-family: Trampolina-bold; src: url('fonts/FbTrampolina-Bold.otf'); }
-@font-face { font-family: Typograph-bold; src: url('fonts/FbTypographEng-Bold.otf'); }
-@font-face { font-family: Typograph-reglar; src: url('fonts/FbTypographEng-Regular.otf'); }
-
-
 
 /* ==========================================================================
    Base styles: opinionated defaults
