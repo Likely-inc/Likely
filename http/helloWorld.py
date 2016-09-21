@@ -1,5 +1,6 @@
 import tornado.ioloop
 import tornado.web
+import os.path
 
 
 class MainHandler(tornado.web.RequestHandler):
@@ -10,12 +11,21 @@ class AppHandler(tornado.web.RequestHandler):
     def get(self):
         self.write("Hello, world2")
 
+class Application(tornado.web.Application):
+    def __init__(self):
+        handlers = [
+            (r"/", MainHandler),
+            (r"/app", AppHandler)
+        ]
+        settings = {
+            "debug": True,
+            "static_path": os.path.join(os.path.dirname(__file__), "http")
+        }
+        tornado.web.Application.__init__(self, handlers, **settings)
+
 
 def make_app():
-    return tornado.web.Application([
-        (r"/", MainHandler),
-        (r"/app", AppHandler),
-    ])
+    return Application()
 
 if __name__ == "__main__":
     app = make_app()
