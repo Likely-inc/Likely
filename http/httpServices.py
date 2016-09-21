@@ -12,7 +12,6 @@ class LikesHandler:
     def __init__(self, img, txt):
         __img = img
         __text = txt
-        print("Hello")
 
 
 
