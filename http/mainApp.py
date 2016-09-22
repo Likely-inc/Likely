@@ -19,6 +19,16 @@ class AppHandler(tornado.web.RequestHandler):
         self.render("src/LikelyMain.html", uname=t.getUser(), pProfile=t.getProfilePic())
         print(t.getUser(), t.getProfilePic())
 
+class UploadHandler(tornado.web.RequestHandler):
+    def post(self):
+        file1 = self.request.files['file1'][0]
+        original_fname = file1['filename']
+
+        output_file = open("uploads/" + original_fname, 'wb')
+        output_file.write(file1['body'])
+
+        self.finish("file " + original_fname + " is uploaded")
+
 
 
 
@@ -31,6 +41,7 @@ class Application(tornado.web.Application):
         handlers = [
             (r"/", MainHandler),
             (r"/app", AppHandler),
+            (r"/upload", AppHandler),
         ]
 
         tornado.web.Application.__init__(self, handlers, **settings)
