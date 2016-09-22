@@ -50,6 +50,7 @@ class instagramConnectionFacade:
             d["image_link"] = elem["images"]["standard_resolution"]["url"]
             d["filter"] = elem["filter"]
             d["location"] = elem["location"]["name"]
+            d["caption"] = elem["caption"]["text"]
             l.append(d)
         return l
 
