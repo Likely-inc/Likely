@@ -29,8 +29,8 @@ class instagramConnectionFacade:
             dataObj = json.loads(result)
             print(dataObj)
             print("Boom")
-        except Exception:
-            print("Yo")
+        except Exception as e:
+            print(e.args)
         # self.__api = InstagramAPI(
         #     client_id=appId,
         #     client_secret=appSecret,
