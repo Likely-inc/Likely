@@ -63,7 +63,10 @@ class instagramConnectionFacade:
                 else:
                     d["location"] = elem["location"]["name"]
                 print("V caption")
-                d["caption"] = elem["caption"]["text"]
+                if (elem["caption"] == None):
+                    d["caption"] = "Not exists"
+                else:
+                    d["caption"] = elem["caption"]["text"]
                 l.append(d)
                 print(d)
         except Exception as e:
