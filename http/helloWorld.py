@@ -10,8 +10,7 @@ class MainHandler(tornado.web.RequestHandler):
         self.render("src/index.html")
 
 class AppHandler(tornado.web.RequestHandler):
-    def get(self, arg):
-        print(arg)
+    def get(self):
         self.write("Hello, world2")
 
 class Application(tornado.web.Application):
