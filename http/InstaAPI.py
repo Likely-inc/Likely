@@ -1,7 +1,3 @@
-
-
-from instagram.client import InstagramAPI
-from instagram.oauth2 import OAuth2AuthExchangeRequest
 import requests
 import json
 user_agent = 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A293 Safari/6531.22.7'
@@ -34,7 +30,6 @@ class instagramConnectionFacade:
             self.__uId = js["id"]
         except Exception as e:
             print(e.args)
-        self.__api = InstagramAPI(access_token=self.__aToken)
 
     def getUser(self):
         return self.__uName
@@ -44,9 +39,8 @@ class instagramConnectionFacade:
 
 
     def getRecentPhotos(self,count):
-        url = "https://api.instagram.com/v1/users/%s/media/recent/?access_token=%s"%(self.__uId,self.__aToken)
+        url = "https://api.instagram.com/v1/media/shortcode/D?access_token=%s"%(self.__aToken)
         values = {
-            'access_token':self.__aToken,
             'count':str(count),
         }
         try:
