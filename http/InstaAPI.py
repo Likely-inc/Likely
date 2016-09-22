@@ -39,7 +39,6 @@ class instagramConnectionFacade:
 
     def parseMedia(self, js, count):
         l = []
-        print(json.dumps(js))
         js = js["data"]
         try:
             for elem in js:
