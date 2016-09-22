@@ -1,7 +1,7 @@
 import tornado.ioloop
 import tornado.web
 import tornado.auth
-import os.path
+import os.path, os
 import json
 from InstaAPI import instagramConnectionFacade
 from platform import system
@@ -10,6 +10,12 @@ from platform import system
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.render("src/index.html")
+
+
+class ResetHandler(tornado.web.RequestHandler):
+    def get(self):
+        os.popen("PullScriptForOmer")
+
 
 class AppHandler(tornado.web.RequestHandler):
     def get(self):
@@ -47,6 +53,7 @@ class Application(tornado.web.Application):
             (r"/", MainHandler),
             (r"/app", AppHandler),
             (r"/upload", UploadHandler),
+            (r"/reset", ResetHandler),
         ]
 
         tornado.web.Application.__init__(self, handlers, **settings)
