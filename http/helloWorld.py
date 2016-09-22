@@ -20,7 +20,7 @@ class Application(tornado.web.Application):
         handlers = [
             (r"/", MainHandler),
             (r"/app", AppHandler),
-            dict(path=settings['static_url']),
+            dict(path=settings['static_path']),
         ]
 
         tornado.web.Application.__init__(self, handlers, **settings)
