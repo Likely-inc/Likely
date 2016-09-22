@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ps -ef | grep "mainApp.py" | tr -s " " | cut -d ' ' -f3 | kill -f
+kill $(screen -ls| grep mainApplication | tr [.] " " | cut -d " " -f1)
 
 git pull
 
@@ -10,4 +10,7 @@ git pull
 
 cd ..
 
-python mainApp.py
+screen -S mainApplication -dm bash -c 'python mainApp.py ; exec sh'
+
+
+
