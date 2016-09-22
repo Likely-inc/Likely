@@ -56,7 +56,7 @@ class instagramConnectionFacade:
     def getRecentPhotos(self,count):
         url = "https://api.instagram.com/v1/users/self/media/recent/?access_token=%s"%(self.__aToken)
         values = {
-            'count':str(10),
+            'count':str(count),
         }
         try:
             r = requests.get(url,params=values)
