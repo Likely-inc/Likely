@@ -37,18 +37,31 @@ class instagramConnectionFacade:
     def getProfilePic(self):
         return self.__pPicture
 
+    def parseMedia(self, js):
+        l = []
+        for elem in js:
+            if(elem["type"] == "video"):
+                continue
+            d = dict()
+            d["likes"] = elem["likes"]["count"]
+            d["created_time"] = elem["created_time"]
+            d["image_link"] = elem["images"]["standard_resolution"]["url"]
+            d["filter"] = elem["filter"]
+            d["location"] = elem["location"]["name"]
+            l.append(d)
+        return l
 
     def getRecentPhotos(self,count):
         url = "https://api.instagram.com/v1/users/self/media/recent/?access_token=%s"%(self.__aToken)
         values = {
-            'count':str(2),
+            'count':str(10),
         }
         try:
-            print(url, values)
             r = requests.get(url,params=values)
-            print("HEY")
             js = json.loads(r.text)
-            print(js)
+            return self.parseMedia(js)
         except Exception as e:
             print(e.args)
+
+
 
