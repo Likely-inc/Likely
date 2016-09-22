@@ -20,8 +20,8 @@ def train(list_of_dicts, new_photo_dict):
                     curdict[label] = googles[key][label]
                 else:
                     curdict[label] = 1
-        training_vects.append([curdict])
-        labels.append([list_of_dicts[i]["likes"]])
+        training_vects.append(curdict)
+        labels.append(list_of_dicts[i]["likes"])
 
     # vectorizer = sklearn.feature_extraction.DictVectorizer()
     # vectorizer.fit_transform(list_of_dicts)
