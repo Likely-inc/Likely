@@ -22,7 +22,7 @@ def getImageFeatures(photo_file):
     service = discovery.build('vision', 'v1', credentials=credentials,
                               discoveryServiceUrl=DISCOVERY_URL)
 
-    with open(photo_file, 'rb') as image:
+    with open(photo_file.split("?")[0], 'rb') as image:
         image_content = base64.b64encode(image.read())
         service_request = service.images().annotate(body={
             'requests': [{
@@ -112,7 +112,7 @@ def getImageFeatures(photo_file):
         print(properties)
         print(landmarks)
         print(logos)
-        print
+        print()
         print(result)
 
         return result
