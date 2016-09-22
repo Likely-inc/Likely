@@ -20,7 +20,7 @@ def downloadPhoto(photo_url, photo_dest_filename):
     :param photo_dest_filename:
     :return:
     """
-    urllib.urlretrieve(photo_url, photo_dest_filename)
+    urllib.request.urlretrieve(photo_url, photo_dest_filename)
 
 def rmPhoto(photo_filename):
     """
