@@ -5,4 +5,4 @@ for root, _, files in os.walk("upload"):
     for f in files:
         fullpath = os.path.join(root, f)
         print(fullpath)
-        print(os.path.getmtime(fullpath))
+        print(os.path.getmtime(fullpath)/60/60)
