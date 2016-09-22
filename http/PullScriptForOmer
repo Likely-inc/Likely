@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ps -ef | grep "mainApp.py" | tr -s " " | cut -d ' ' -f3 | KILL -f
+
 git pull
 
 cd src 
