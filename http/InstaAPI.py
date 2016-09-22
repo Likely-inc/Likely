@@ -2,7 +2,7 @@
 
 from instagram.client import InstagramAPI
 from instagram.oauth2 import OAuth2AuthExchangeRequest
-import urllib,json
+import requests
 user_agent = 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_0 like Mac OS X; en-us) AppleWebKit/532.9 (KHTML, like Gecko) Version/4.0.5 Mobile/8A293 Safari/6531.22.7'
 headers = {'User-Agent': user_agent,
            "Content-type": "application/x-www-form-urlencoded"
@@ -21,14 +21,9 @@ class instagramConnectionFacade:
         }
 
         try:
-            print("Hey")
-            data = urllib.urlencode(values)
-            req = urllib.Request(url, data, headers)
-            response = urllib.urlopen(req)
-            result = response.read()
-            dataObj = json.loads(result)
-            print(dataObj)
-            print("Boom")
+            r = requests.post(url, data=values)
+            print(r.status_code, r.reason)
+            print(r.text[:300])
         except Exception as e:
             print(e.args)
         # self.__api = InstagramAPI(
