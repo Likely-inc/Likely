@@ -25,8 +25,11 @@ class instagramConnectionFacade:
         }
         try:
             r = requests.post(url, data=values)
-            js = json.dumps(r.text[:300])
+            print("Hey")
+            js = json.dumps(r.text)
+            print("Hey1")
             self.__aToken = js["access_token"]
+            print("Hey2")
             print("Cool")
             js = js["user"]
             print("Cool1")
