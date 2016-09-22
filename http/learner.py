@@ -9,7 +9,7 @@ def train(list_of_dicts, new_photo_dict):
     training_vects = []
     for i in range (len(list_of_dicts)):
         this_time = list_of_dicts[i]['created_time']
-        dow = "DOW_" + datetime.fromtimestamp(this_time).strftime("%A")
+        dow = "DOW_" + datetime.fromtimestamp(float(this_time)).strftime("%A")
         curdict = {list_of_dicts[i]["filter"]: 1, list_of_dicts[i]["location"]: 1, dow: 1}
         training_vects.append(curdict)
 
