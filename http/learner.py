@@ -7,6 +7,7 @@ from datetime import datetime
 
 def train(list_of_dicts, new_photo_dict):
     training_vects = []
+    labels = []
     for i in range (len(list_of_dicts)):
         this_time = list_of_dicts[i]['created_time']
         dow = "DOW_" + datetime.fromtimestamp(float(this_time)).strftime("%A")
@@ -20,11 +21,22 @@ def train(list_of_dicts, new_photo_dict):
                 else:
                     curdict[label] = 1
         training_vects.append([curdict])
+        labels.append([list_of_dicts[i]["likes"]])
 
     # vectorizer = sklearn.feature_extraction.DictVectorizer()
     # vectorizer.fit_transform(list_of_dicts)
 
     print(training_vects)
+
+    vectorizer = sklearn.feature_extraction.DictVectorizer()
+    vectorizer.fit_transform(training_vects)
+
+    data = vectorizer.fit(training_vects)
+
+    predictor = linear_model.RidgeCV()
+    predictor.fit(data, labels)
+
+
     # return predict(predictor, new_vec)
     return 37
 
