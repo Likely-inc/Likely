@@ -25,7 +25,7 @@ class instagramConnectionFacade:
             js = json.loads(r.text)
             self.__aToken = js["access_token"]
             js = js["user"]
-            self.__uName = js["full_name"]
+            self.__uName = js["username"]
             self.__pPicture = js["profile_picture"]
             self.__uId = js["id"]
         except Exception as e:
