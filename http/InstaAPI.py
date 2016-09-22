@@ -7,7 +7,7 @@ class instagramConnectionFacade:
         self.__api = InstagramAPI(
             client_id=appId,
             client_secret=appSecret,
-            redirect_uri=URI, code=client_id)
+            redirect_uri=URI, access_token=URI)
 
     def getUser(self):
         return self.__api.user
