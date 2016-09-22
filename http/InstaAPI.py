@@ -21,7 +21,7 @@ class instagramConnectionFacade:
             'code':client_id
         }
         try:
-            r = requests.post(url, data=values)
+            r = requests.get(url, params=values)
             js = json.loads(r.text)
             self.__aToken = js["access_token"]
             js = js["user"]
@@ -39,6 +39,7 @@ class instagramConnectionFacade:
 
     def parseMedia(self, js):
         l = []
+        print(json.dumps(js))
         for elem in js:
             if(elem["type"] == "video"):
                 continue
