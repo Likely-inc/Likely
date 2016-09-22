@@ -17,7 +17,7 @@ class AppHandler(tornado.web.RequestHandler):
                                       "http://ec2-54-244-111-228.us-west-2.compute.amazonaws.com/app")
         self.write("Hello "+t.getUser())
         # user = t.getUser()
-        self.write(str(t.getRecentPhotos()))
+        self.write(str(t.getRecentPhotos(5)))
 
 
 
