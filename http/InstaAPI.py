@@ -39,7 +39,7 @@ class instagramConnectionFacade:
 
 
     def getRecentPhotos(self,count):
-        url = "https://api.instagram.com/v1/media/shortcode/D?access_token=%s"%(self.__aToken)
+        url = "https://api.instagram.com/v1/users/self/media/recent/?access_token=%s"%(self.__aToken)
         values = {
             'count':str(count),
         }
