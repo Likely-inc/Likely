@@ -24,13 +24,7 @@ class UploadHandler(tornado.web.RequestHandler):
         self.set_header("Access-Control-Allow-Origin", "*")
 
     def post(self):
-        file1 = self.request.files['file1'][0]
-        original_fname = file1['filename']
-
-        output_file = open("uploads/" + original_fname, 'wb')
-        output_file.write(file1['body'])
-
-        self.finish("file " + original_fname + " is uploaded")
+        print(self.request.files)
 
 
 
