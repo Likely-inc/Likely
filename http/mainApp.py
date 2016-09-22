@@ -44,7 +44,7 @@ class Application(tornado.web.Application):
         handlers = [
             (r"/", MainHandler),
             (r"/app", AppHandler),
-            (r"/upload", AppHandler),
+            (r"/upload", UploadHandler),
         ]
 
         tornado.web.Application.__init__(self, handlers, **settings)
