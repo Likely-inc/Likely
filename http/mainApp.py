@@ -39,6 +39,7 @@ class UploadHandler(tornado.web.RequestHandler):
         print(self.request.body_arguments)
         comment = self.request.body_arguments["captionarg"]
         original_fname = file1['filename']
+        print(ipAndCodes)
 
 
         t = instagramConnectionFacade(ipAndCodes[self.request.remote_ip], "5f46ab2c0ce24bdaa966b3ea9b1b9b2a",
