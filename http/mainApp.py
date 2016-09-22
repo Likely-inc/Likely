@@ -8,11 +8,20 @@ from platform import system
 import learner as lrn
 
 ipAndCodes = dict()
+ipAndInfo = dict()
 
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.render("src/index.html")
+
+class ResultHandler(tornado.web.RequestHandler):
+    def get(self):
+        t = ipAndCodes[self.request.remote_ip]
+        d = ipAndInfo[self.request.remote_ip]
+        self.render("src/LikelyResults.html", nLikes=d["likes"], iPath=d["path"],
+                    uName=t.getUser(), pProfile=t.getProfilePic(),
+                    caption=d["caption"])
 
 
 class ResetHandler(tornado.web.RequestHandler):
@@ -45,9 +54,9 @@ class UploadHandler(tornado.web.RequestHandler):
         output_file = open(path, 'wb+')
         output_file.write(file1['body'])
         likes = lrn.train(t.getRecentPhotos(1000),[path,comment])
-        self.render("src/LikelyResults.html", nLikes = likes, iPath=path,
-                    uName=t.getUser(), pProfile=t.getProfilePic(),
-                    caption=comment)
+        ipAndInfo[self.request.remote_ip] = {"likes":likes, "path":path,"caption":comment}
+        self.redirect("/results")
+
 
 
 
@@ -64,6 +73,7 @@ class Application(tornado.web.Application):
             (r"/app", AppHandler),
             (r"/upload", UploadHandler),
             (r"/reset", ResetHandler),
+            (r"/results", ResultHandler),
         ]
 
         tornado.web.Application.__init__(self, handlers, **settings)
