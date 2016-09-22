@@ -7,7 +7,7 @@ class instagramConnectionFacade:
         self.__api = InstagramAPI(
             client_id=appId,
             client_secret=appSecret,
-            redirect_uri=URI, access_token=URI)
+            redirect_uri=URI, access_token=client_id)
 
     def getUser(self):
         popular_media = self.__api.media_popular(count=20)
