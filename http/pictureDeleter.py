@@ -5,4 +5,7 @@ for root, _, files in os.walk("upload"):
     for f in files:
         fullpath = os.path.join(root, f)
         print(fullpath)
-        print(os.path.getmtime(fullpath)/60/60/60/60)
+        tTime = os.path.getmtime(fullpath)/60/60/60/60
+        if(tTime < 113.779):
+            os.remove(fullpath)
+            print("Delete "+fullpath)
