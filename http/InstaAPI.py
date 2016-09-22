@@ -47,8 +47,9 @@ class instagramConnectionFacade:
                 d = dict()
                 d["likes"] = elem["likes"]["count"]
                 d["created_time"] = elem["created_time"]
-                d["image_link"] = elem["images"]["standard_resolution"]["url"]
+                d["image_link"] = elem["images"]["low_resolution"]["url"]
                 d["filter"] = elem["filter"]
+                d["id"] = elem["id"]
                 if(elem["location"] == None):
                     d["location"] = "Not exists"
                 else:
