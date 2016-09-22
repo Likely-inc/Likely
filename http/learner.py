@@ -14,7 +14,7 @@ def train(list_of_dicts, new_photo_dict):
         googles = imageClassifier.getImageFeatures(list_of_dicts[i]["image_link"])
         # print(googles)
         for key in googles.keys():
-            for label in key:
+            for label in googles[key]:
                 curdict[label] = 1
         training_vects.append([curdict])
 
