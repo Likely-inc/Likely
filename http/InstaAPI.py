@@ -21,7 +21,7 @@ class instagramConnectionFacade:
             'code':client_id
         }
         try:
-            r = requests.get(url, params=values)
+            r = requests.post(url, data=values)
             js = json.loads(r.text)
             self.__aToken = js["access_token"]
             js = js["user"]
