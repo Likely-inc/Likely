@@ -16,7 +16,7 @@ class ResetHandler(tornado.web.RequestHandler):
     def get(self):
         self.write("Restart the server 2")
         print("Killing python")
-        os.popen("PullScriptForOmer")
+        os.popen("./PullScriptForOmer")
 
 
 class AppHandler(tornado.web.RequestHandler):
