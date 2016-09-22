@@ -24,6 +24,7 @@ class AppHandler(tornado.web.RequestHandler):
         t = instagramConnectionFacade(self.get_argument("code"),"5f46ab2c0ce24bdaa966b3ea9b1b9b2a", "8c5523d19c604c0dac2c66946083a5b4",
                                       "http://ec2-54-244-111-228.us-west-2.compute.amazonaws.com/app")
         l = t.getRecentPhotos(1)
+        print(l)
         self.render("src/LikelyMain.html", uname=t.getUser(), pProfile=t.getProfilePic())
 
 class UploadHandler(tornado.web.RequestHandler):
