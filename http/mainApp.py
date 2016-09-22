@@ -45,7 +45,9 @@ class UploadHandler(tornado.web.RequestHandler):
         output_file = open(path, 'wb+')
         output_file.write(file1['body'])
         likes = lrn.train(t.getRecentPhotos(1000),[path,comment])
-        self.finish("file " + original_fname + " is uploaded")
+        self.render("src/LikelyResults.html", nLikes = likes, iPath=path,
+                    uName=t.getUser(), pProfile=t.getProfilePic(),
+                    caption=comment)
 
 
 
