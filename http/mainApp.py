@@ -14,6 +14,7 @@ class MainHandler(tornado.web.RequestHandler):
 
 class ResetHandler(tornado.web.RequestHandler):
     def get(self):
+        print("Killing python")
         os.popen("PullScriptForOmer")
 
 
