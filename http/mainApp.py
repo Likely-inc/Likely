@@ -2,7 +2,6 @@ import tornado.ioloop
 import tornado.web
 import tornado.auth
 import os.path
-from instagram.client import InstagramAPI
 from InstaAPI import instagramConnectionFacade
 from platform import system
 
