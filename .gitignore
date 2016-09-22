@@ -48,3 +48,4 @@ fabric.properties
 .DS_Store
 http/src
 http/upload/*
+__pycache__/*
