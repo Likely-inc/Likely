@@ -14,6 +14,7 @@ class instagramConnectionFacade:
     __uName = None
     __aToken = None
     __pPicture = None
+    __uId = None
     def __init__(self, client_id, appId, appSecret, URI):
         url = "https://api.instagram.com/oauth/access_token"
         values = {
@@ -30,15 +31,25 @@ class instagramConnectionFacade:
             js = js["user"]
             self.__uName = js["full_name"]
             self.__pPicture = js["profile_picture"]
+            self.__uId = js["id"]
         except Exception as e:
             print(e.args)
-        # self.__api = InstagramAPI(
-        #     client_id=appId,
-        #     client_secret=appSecret,
-        #     redirect_uri=URI, access_token=client_id)
+        self.__api = InstagramAPI(access_token=self.__aToken)
 
     def getUser(self):
         return self.__uName
 
     def getProfilePic(self):
         return self.__pPicture
+
+
+    def getRecentPhotos(self,count):
+        url = "https://api.instagram.com/v1/users/self/media/recent/?access_token="+self.__aToken
+        values = {
+            'access_token':self.__aToken,
+            'count':count,
+        }
+        r = requests.post(url, dtat=values)
+        js = json.loads(r.text)
+        print(js)
+
