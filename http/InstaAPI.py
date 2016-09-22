@@ -21,12 +21,14 @@ class instagramConnectionFacade:
         }
 
         try:
+            print("Hey")
             data = urllib.urlencode(values)
             req = urllib.Request(url, data, headers)
             response = urllib.urlopen(req)
             result = response.read()
             dataObj = json.loads(result)
             print(dataObj)
+            print("Boom")
         except Exception:
             print("Yo")
         # self.__api = InstagramAPI(
