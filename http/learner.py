@@ -1,5 +1,6 @@
 from sklearn import linear_model
 # import imageClassifier
+import sklearn.feature_extraction
 from datetime import datetime
 
 
@@ -11,9 +12,14 @@ def train(list_of_dicts, new_photo_dict):
         dow = "DOW_" + datetime.fromtimestamp(this_time).strftime("%A")
         curdict = {list_of_dicts[i]["filter"]: 1, list_of_dicts[i]["location"]: 1, dow: 1}
         training_vects.append(curdict)
+
+    vectorizer = sklearn.feature_extraction.DictVectorizer()
+
+
+
     print(training_vects)
     # return predict(predictor, new_vec)
-
+    return 37
 
 def predict(predictor, new_vector):
     return predictor.predict(new_vector)[0]
