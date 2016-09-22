@@ -40,7 +40,7 @@ def make_app():
     return Application()
 
 if __name__ == "__main__":
-    if system() == "Windows":
+    if system() in ["Windows", "Darwin"]:
         port = 8888
     else:
         port = 80
