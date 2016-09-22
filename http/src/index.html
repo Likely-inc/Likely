@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Likely</title>
+        <title>Welcome to Likely</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -11,8 +11,10 @@
         <!-- Place favicon.ico in the root directory -->
         <link rel="icon" type="image/x-icon" href="favicon.png" />
 
-        <link rel="stylesheet" href="http/src/css/normalize.css">
-        <link rel="stylesheet" href="http/src/css/main.css">
+        <!--<link rel="stylesheet" href="css/normalize.css">-->
+        <link rel="stylesheet" href="css/normalize.css">
+        <!--<link rel="stylesheet" href="css/main.css">-->
+        <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
         <script src="https://use.typekit.net/wqh0vqt.js"></script>
         <script>try{Typekit.load({ async: true });}catch(e){}</script>
@@ -25,7 +27,7 @@
         <![endif]-->
 
 
-        <!-- #################################   likely main   ################################# -->
+        <!-- #################################   Likely Welcome   ################################# -->
 
         <div id = "welcome-wrapper">
             <div id = "log-in-box" >
@@ -33,7 +35,7 @@
                 <div class = "line"></div>
                     <div class = "submit-button">
                          <a href="https://www.instagram.com/oauth/authorize/?client_id=5f46ab2c0ce24bdaa966b3ea9b1b9b2a&redirect_uri=http://ec2-54-244-111-228.us-west-2.compute.amazonaws.com/app&response_type=code">
-                            Log-In
+                            Continue
                          </a>
                     </div>
 
@@ -42,7 +44,8 @@
             </div>
         </div>
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script> 
+        <script src="https://code.jquery.com/jquery-{{JQUERY_VERSION}}.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-{{JQUERY_VERSION}}.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
 
