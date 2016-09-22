@@ -44,6 +44,7 @@ class instagramConnectionFacade:
             if(elem["type"] == "video"):
                 continue
             d = dict()
+            elem = elem["data"]
             d["likes"] = elem["likes"]["count"]
             d["created_time"] = elem["created_time"]
             d["image_link"] = elem["images"]["standard_resolution"]["url"]
