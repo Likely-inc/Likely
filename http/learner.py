@@ -27,10 +27,10 @@ def train(list_of_dicts, new_photo_dict):
 
     print_oneline(training_vects)
 
-    vectorizer = sklearn.feature_extraction.DictVectorizer()
-    vectorizer.fit_transform(training_vects)
-
-    data = vectorizer.fit(training_vects)
+    # vectorizer = sklearn.feature_extraction.DictVectorizer()
+    # vectorizer.fit_transform(training_vects)
+    #
+    # data = vectorizer.fit(training_vects)
 
     # predictor = linear_model.RidgeCV()
     # predictor.fit(data, labels)
@@ -41,8 +41,12 @@ def train(list_of_dicts, new_photo_dict):
 
 
 def print_oneline(training_vecs):
+    print("[training_vec] start")
     for vec in training_vecs:
         print(vec)
+    print("[training_vec] start")
+    print(training_vecs)
+
 
 def predict(predictor, new_vector):
     return predictor.predict(new_vector)[0]
