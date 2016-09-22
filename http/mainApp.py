@@ -3,7 +3,7 @@ import tornado.web
 import tornado.auth
 import os.path
 from instagram.client import InstagramAPI
-from ParseUserData import moshe
+from InstaAPI import instagramConnectionFacade
 from platform import system
 
 
@@ -13,7 +13,7 @@ class MainHandler(tornado.web.RequestHandler):
 
 class AppHandler(tornado.web.RequestHandler):
     def get(self):
-        t = moshe(self.get_argument("code"),"5f46ab2c0ce24bdaa966b3ea9b1b9b2a", "8c5523d19c604c0dac2c66946083a5b4", self.get_argument("Host"))
+        t = instagramConnectionFacade(self.get_argument("code"),"5f46ab2c0ce24bdaa966b3ea9b1b9b2a", "8c5523d19c604c0dac2c66946083a5b4", self.get_argument("Host"))
         user = t.getUser()
         print(user)
 
