@@ -2,6 +2,7 @@ import tornado.ioloop
 import tornado.web
 import tornado.auth
 import os.path
+from instagram.client import InstagramAPI
 
 
 class MainHandler(tornado.web.RequestHandler):
@@ -10,6 +11,8 @@ class MainHandler(tornado.web.RequestHandler):
 
 class AppHandler(tornado.web.RequestHandler):
     def get(self):
+        print("============TEST TEST TEST=============")
+        print(self.get_argument("code"))
         self.write("Hello, world2")
 
 class Application(tornado.web.Application):
