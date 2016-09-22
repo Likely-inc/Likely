@@ -35,6 +35,8 @@ class UploadHandler(tornado.web.RequestHandler):
         print(self.request.files)
         print(self.request)
         file1 = self.request.files['filearg'][0]
+        comment = self.request.text
+        print(comment)
         original_fname = file1['filename']
 
         output_file = open("upload/" + original_fname, 'wb+')
