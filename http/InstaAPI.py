@@ -42,7 +42,7 @@ class instagramConnectionFacade:
         print(json.dumps(js))
         js = js["data"]
         try:
-            for elem in js:
+            for elem in js[:-1]:
                 print(elem)
                 print("------------------------------")
                 print("------------------------------")
