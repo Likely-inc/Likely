@@ -45,7 +45,7 @@ class instagramConnectionFacade:
         }
         try:
             print(url, values)
-            r = requests.post(url, data=values)
+            r = requests.get(url,params=values)
             print("HEY")
             print(r.text[:300])
             # js = json.loads(r.text)
