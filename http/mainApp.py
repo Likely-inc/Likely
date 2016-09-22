@@ -40,9 +40,11 @@ class UploadHandler(tornado.web.RequestHandler):
         original_fname = file1['filename']
         t = ipAndCodes[self.request.remote_ip]
         path = "upload/%s/%s" %(t.getUser(),original_fname)
+        if not os.path.exists("upload/"+t.getUser()):
+            os.makedirs("upload/"+t.getUser())
         output_file = open(path, 'wb+')
         output_file.write(file1['body'])
-        lrn.train(t.getRecentPhotos(1000),[path,comment])
+        likes = lrn.train(t.getRecentPhotos(1000),[path,comment])
         self.finish("file " + original_fname + " is uploaded")
 
 
