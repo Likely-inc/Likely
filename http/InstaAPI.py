@@ -37,12 +37,12 @@ class instagramConnectionFacade:
     def getProfilePic(self):
         return self.__pPicture
 
-    def parseMedia(self, js):
+    def parseMedia(self, js, count):
         l = []
         print(json.dumps(js))
         js = js["data"]
         try:
-            for elem in js[:-1]:
+            for elem in js[:count-1]:
                 print(elem)
                 print("------------------------------")
                 print("------------------------------")
@@ -70,7 +70,7 @@ class instagramConnectionFacade:
         try:
             r = requests.get(url,params=values)
             js = json.loads(r.text)
-            return self.parseMedia(js)
+            return self.parseMedia(js, count)
         except Exception as e:
             print(e.args)
 
