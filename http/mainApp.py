@@ -48,13 +48,15 @@ class UploadHandler(tornado.web.RequestHandler):
         comment = self.request.body_arguments["captionarg"][0].decode()
         original_fname = file1['filename']
         t = ipAndCodes[self.request.remote_ip]
-        path = "upload/%s/%s" %(t.getUser(),original_fname)
-        if not os.path.exists("upload/"+t.getUser()):
-            os.makedirs("upload/"+t.getUser())
+        path = "src/upload/%s/%s" %(t.getUser(),original_fname)
+        if not os.path.exists("src/upload/"+t.getUser()):
+            os.makedirs("src/upload/"+t.getUser())
         output_file = open(path, 'wb+')
         output_file.write(file1['body'])
         likes = lrn.train(t.getRecentPhotos(1000),[path,comment])
-        ipAndInfo[self.request.remote_ip] = {"likes":likes, "path":path,"caption":comment}
+        ipAndInfo[self.request.remote_ip] = {"likes":likes,
+                                             "path":"upload/"+t.getUser()+"/"+original_fname,
+                                             "caption":comment}
         self.redirect("/results")
 
 
