@@ -12,9 +12,11 @@ def train(list_of_dicts, new_photo_dict):
         dow = "DOW_" + datetime.fromtimestamp(float(this_time)).strftime("%A")
         curdict = {list_of_dicts[i]["filter"]: 1, list_of_dicts[i]["location"]: 1, dow: 1}
         googles = imageClassifier.getImageFeatures(list_of_dicts[i]["image_link"])
+        # print(googles)
         for key in googles.keys():
-            curdict[key] = 1
-        training_vects.append(curdict)
+            for label in googles[key]:
+                curdict[label] = 1
+        training_vects.append([curdict])
 
     # vectorizer = sklearn.feature_extraction.DictVectorizer()
     # vectorizer.fit_transform(list_of_dicts)
