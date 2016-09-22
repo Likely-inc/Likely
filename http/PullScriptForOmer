@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ps -ef | grep "mainApp.py" | tr -s " " | cut -d ' ' -f3 | KILL -f
+ps -ef | grep "mainApp.py" | tr -s " " | cut -d ' ' -f3 | kill -f
 
 git pull
 
