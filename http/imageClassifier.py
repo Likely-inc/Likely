@@ -5,13 +5,32 @@ This is the recognition part of the Likely web app. It recognizes photo features
 import argparse
 import base64
 import httplib2
+import urllib
+import os
 
 from googleapiclient import discovery
 from oauth2client.client import GoogleCredentials
 
 DISCOVERY_URL = 'https://{api}.googleapis.com/$discovery/rest?version={apiVersion}'
 
-def getImageFeatures(photo_file):
+def downloadPhoto(photo_url, photo_dest_filename):
+    """
+    Downloads the photo in photo_url to the given destination.
+    :param photo_url:
+    :param photo_dest_filename:
+    :return:
+    """
+    urllib.urlretrieve(photo_url, photo_dest_filename)
+
+def rmPhoto(photo_filename):
+    """
+    Remove the file in the given filename
+    :param photo_filename:
+    :return:
+    """
+    os.remove(photo_filename)
+
+def getImageFeatures(photo_url):
     """
     Get the features of the given photo file.
     :param photo_file:
@@ -21,6 +40,8 @@ def getImageFeatures(photo_file):
     credentials = GoogleCredentials.get_application_default()
     service = discovery.build('vision', 'v1', credentials=credentials,
                               discoveryServiceUrl=DISCOVERY_URL)
+    photo_file = "../images/temp.jpg"
+    downloadPhoto(photo_url, photo_file)
 
     with open(photo_file, 'rb') as image:
         image_content = base64.b64encode(image.read())
@@ -61,7 +82,6 @@ def getImageFeatures(photo_file):
 
         response = service_request.execute()
 
-        properties = ['noProperties']
 
         if 'landmarkAnnotations' in response['responses'][0]:
             landmarks = response['responses'][0]['landmarkAnnotations']
@@ -107,13 +127,15 @@ def getImageFeatures(photo_file):
             result['logos'] = logos
 
         # debug prints, todo remove
-        print(labels)
-        print(faces)
-        print(properties)
-        print(landmarks)
-        print(logos)
-        print()
+        # print(labels)
+        # print(faces)
+        # print(properties)
+        # print(landmarks)
+        # print(logos)
+        # print
         print(result)
+
+        rmPhoto(photo_file)
 
         return result
 
