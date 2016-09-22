@@ -3,6 +3,7 @@ import tornado.web
 import tornado.auth
 import os.path
 from instagram.client import InstagramAPI
+from ParseUserData import moshe
 
 
 class MainHandler(tornado.web.RequestHandler):
@@ -11,9 +12,14 @@ class MainHandler(tornado.web.RequestHandler):
 
 class AppHandler(tornado.web.RequestHandler):
     def get(self):
-        print("============TEST TEST TEST=============")
-        print(self.get_argument("code"))
-        self.write("Hello, world2")
+        t = moshe(self.get_argument("code"),"5f46ab2c0ce24bdaa966b3ea9b1b9b2a")
+        rMedia, next_ = t.getRecentMedia()
+        for m in rMedia:
+            self.write(m.caption.text)
+        self.write(t)
+
+
+
 
 class Application(tornado.web.Application):
     def __init__(self):
