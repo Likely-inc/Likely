@@ -13,14 +13,16 @@ class AppHandler(tornado.web.RequestHandler):
 
 class Application(tornado.web.Application):
     def __init__(self):
-        handlers = [
-            (r"/", MainHandler),
-            (r"/app", AppHandler)
-        ]
         settings = {
             "debug": True,
-            # "static_path": os.path.join(os.path.dirname(__file__), "src")
+            "static_url": os.path.join(os.path.dirname(__file__), "src")
         }
+        handlers = [
+            (r"/", MainHandler),
+            (r"/app", AppHandler),
+            dict(path=settings['static_url']),
+        ]
+
         tornado.web.Application.__init__(self, handlers, **settings)
 
 
