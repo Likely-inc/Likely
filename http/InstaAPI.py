@@ -10,4 +10,5 @@ class instagramConnectionFacade:
             redirect_uri=URI, access_token=URI)
 
     def getUser(self):
-        return self.__api.user
+        popular_media = self.__api.media_popular(count=20)
+        return [elem.images['standard_resolution'].url for elem in popular_media]
