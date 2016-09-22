@@ -11,15 +11,13 @@ def train(list_of_dicts, new_photo_dict):
         this_time = list_of_dicts[i]['created_time']
         dow = "DOW_" + datetime.fromtimestamp(float(this_time)).strftime("%A")
         curdict = {list_of_dicts[i]["filter"]: 1, list_of_dicts[i]["location"]: 1, dow: 1}
-        # print(imageClassifier.getImageFeatures(list_of_dicts[i]["image_link"]))
-        print(imageClassifier.getImageFeatures("../images/test_image.jpg"))
-        # googles = imageClassifier.getImageFeatures(list_of_dicts[i]["image_link"])
-        # for key in googles.keys():
-        #     curdict[key] = 1
+        googles = imageClassifier.getImageFeatures(list_of_dicts[i]["image_link"])
+        for key in googles.keys():
+            curdict[key] = 1
         training_vects.append(curdict)
 
-    vectorizer = sklearn.feature_extraction.DictVectorizer()
-    vectorizer.fit_transform(list_of_dicts)
+    # vectorizer = sklearn.feature_extraction.DictVectorizer()
+    # vectorizer.fit_transform(list_of_dicts)
 
     print(training_vects)
     # return predict(predictor, new_vec)
