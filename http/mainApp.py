@@ -33,7 +33,7 @@ class UploadHandler(tornado.web.RequestHandler):
         self.set_header("Access-Control-Allow-Origin", "*")
 
     def post(self):
-        print(self.request.header)
+        print(self.request.remote_ip)
         file1 = self.request.files['filearg'][0]
         print(self.request.body_arguments)
         comment = self.request.body_arguments["captionarg"]
@@ -43,9 +43,9 @@ class UploadHandler(tornado.web.RequestHandler):
         # t = instagramConnectionFacade(self.get_argument("code"), "5f46ab2c0ce24bdaa966b3ea9b1b9b2a",
         #                               "8c5523d19c604c0dac2c66946083a5b4",
         #                               "http://ec2-54-244-111-228.us-west-2.compute.amazonaws.com/app")
-        path = "upload/%s/%s" %(t.getUser(),original_fname)
-        output_file = open(path, 'wb+')
-        output_file.write(file1['body'])
+        # path = "upload/%s/%s" %(t.getUser(),original_fname)
+        # output_file = open(path, 'wb+')
+        # output_file.write(file1['body'])
         # lrn.train(t.getRecentPhotos(1000),[path,comment])
         self.finish("file " + original_fname + " is uploaded")
 
