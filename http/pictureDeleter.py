@@ -1,7 +1,8 @@
 import time
-import os
+import os, os.path
 
-p = os.listdir("upload")
-for d in os.listdir("upload"):
-    print(d)
-
+for root, _, files in os.walk("upload"):
+    for f in files:
+        fullpath = os.path.join(root, f)
+        print(fullpath)
+        print(os.path.getctime(fullpath))
