@@ -42,33 +42,23 @@ class instagramConnectionFacade:
         print(json.dumps(js))
         js = js["data"]
         try:
-            for elem in js[:count-1]:
-                print("======================")
-                print(elem)
-                print("=======-----===============")
+            for elem in js:
                 if(elem["type"] == "video"):
                     continue
                 d = dict()
-                print("V likes")
                 d["likes"] = elem["likes"]["count"]
-                print("V created time")
                 d["created_time"] = elem["created_time"]
-                print("V image ling")
                 d["image_link"] = elem["images"]["standard_resolution"]["url"]
-                print("V filter")
                 d["filter"] = elem["filter"]
-                print("V location")
                 if(elem["location"] == None):
                     d["location"] = "Not exists"
                 else:
                     d["location"] = elem["location"]["name"]
-                print("V caption")
                 if (elem["caption"] == None):
                     d["caption"] = "Not exists"
                 else:
                     d["caption"] = elem["caption"]["text"]
                 l.append(d)
-                print(d)
         except Exception as e:
             print(e.args)
         return l
