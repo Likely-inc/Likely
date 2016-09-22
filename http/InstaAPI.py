@@ -57,7 +57,7 @@ class instagramConnectionFacade:
                 # d["filter"] = elem["filter"]
                 # d["location"] = elem["location"]["name"]
                 # d["caption"] = elem["caption"]["text"]
-                l.append(d)
+                # l.append(d)
         except Exception as e:
             print(e.args)
         return l
