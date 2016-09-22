@@ -15,7 +15,7 @@ class AppHandler(tornado.web.RequestHandler):
     def get(self):
         t = instagramConnectionFacade(self.get_argument("code"),"5f46ab2c0ce24bdaa966b3ea9b1b9b2a", "8c5523d19c604c0dac2c66946083a5b4",
                                       "http://ec2-54-244-111-228.us-west-2.compute.amazonaws.com/app")
-        self.write("Hello "+t.getUser())
+        self.write("Hello "+t.getUser())    
         # user = t.getUser()
         # print(user)
 

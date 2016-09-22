@@ -26,6 +26,7 @@ class instagramConnectionFacade:
         try:
             r = requests.post(url, data=values)
             js = json.dump(r.text[:300])
+            print(r.text[:300])
             self.__uName = js["full_name"]
             self.__aToken = js["access_token"]
             self.__pPicture = js["profile_picture"]
