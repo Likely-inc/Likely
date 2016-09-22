@@ -12,7 +12,7 @@ class MainHandler(tornado.web.RequestHandler):
 class AppHandler(tornado.web.RequestHandler):
     def get(self):
         print("============TEST TEST TEST=============")
-        print(self.request.path.get_argument("code"))
+        print(self.get_argument("code"))
         self.write("Hello, world2")
 
 class Application(tornado.web.Application):
