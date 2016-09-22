@@ -32,8 +32,8 @@ class UploadHandler(tornado.web.RequestHandler):
 
     def post(self):
         file1 = self.request.files['filearg'][0]
-        comment = self.request.body_arguments["captionarg"].decode()
-        print(comment)
+        print(self.request.body_arguments)
+        comment = self.request.body_arguments["captionarg"]
         original_fname = file1['filename']
 
 
@@ -43,7 +43,7 @@ class UploadHandler(tornado.web.RequestHandler):
         path = "upload/%s/%s" %(t.getUser(),original_fname)
         output_file = open(path, 'wb+')
         output_file.write(file1['body'])
-        lrn.train(t.getRecentPhotos(1000),[output_file,path])
+        lrn.train(t.getRecentPhotos(1000),[path,comment])
         self.finish("file " + original_fname + " is uploaded")
 
 
