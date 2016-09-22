@@ -51,7 +51,7 @@ class instagramConnectionFacade:
         }
         try:
             print(url, values)
-            r = requests.post(url, dtat=values)
+            r = requests.post(url, data=values)
             js = json.loads(r.text)
             print(js)
         except Exception as e:
