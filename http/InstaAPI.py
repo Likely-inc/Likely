@@ -43,21 +43,18 @@ class instagramConnectionFacade:
         js = js["data"]
         try:
             for elem in js:
-                print(elem)
-                print("------------------------------")
-                print("------------------------------")
-                print("------------------------------")
-                print("------------------------------")
-                # if(elem["type"] == "video"):
-                #     continue
-                # d = dict()
-                # d["likes"] = elem["likes"]["count"]
-                # d["created_time"] = elem["created_time"]
-                # d["image_link"] = elem["images"]["standard_resolution"]["url"]
-                # d["filter"] = elem["filter"]
-                # d["location"] = elem["location"]["name"]
-                # d["caption"] = elem["caption"]["text"]
-                # l.append(d)
+                if(elem == None):
+                    continue
+                if(elem["type"] == "video"):
+                    continue
+                d = dict()
+                d["likes"] = elem["likes"]["count"]
+                d["created_time"] = elem["created_time"]
+                d["image_link"] = elem["images"]["standard_resolution"]["url"]
+                d["filter"] = elem["filter"]
+                d["location"] = elem["location"]["name"]
+                d["caption"] = elem["caption"]["text"]
+                l.append(d)
         except Exception as e:
             print(e.args)
         return l
