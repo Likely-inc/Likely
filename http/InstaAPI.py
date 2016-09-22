@@ -25,16 +25,10 @@ class instagramConnectionFacade:
         }
         try:
             r = requests.post(url, data=values)
-            print("Hey")
             js = json.loads(r.text)
-            print("Hey1")
             self.__aToken = js["access_token"]
-            print("Hey2")
-            print("Cool")
             js = js["user"]
-            print("Cool1")
             self.__uName = js["full_name"]
-            print("Cool2")
             self.__pPicture = js["profile_picture"]
         except Exception as e:
             print(e.args)
