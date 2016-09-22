@@ -1,5 +1,6 @@
 import tornado.ioloop
 import tornado.web
+import tornado.auth
 import os.path
 
 
