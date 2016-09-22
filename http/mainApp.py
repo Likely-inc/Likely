@@ -45,7 +45,7 @@ class UploadHandler(tornado.web.RequestHandler):
 
     def post(self):
         file1 = self.request.files['filearg'][0]
-        comment = self.request.body_arguments["captionarg"]
+        comment = self.request.body_arguments["captionarg"][0].decode()
         original_fname = file1['filename']
         t = ipAndCodes[self.request.remote_ip]
         path = "upload/%s/%s" %(t.getUser(),original_fname)
