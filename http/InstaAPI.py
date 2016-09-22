@@ -49,11 +49,17 @@ class instagramConnectionFacade:
                 if(elem["type"] == "video"):
                     continue
                 d = dict()
+                print("V likes")
                 d["likes"] = elem["likes"]["count"]
+                print("V created time")
                 d["created_time"] = elem["created_time"]
+                print("V image ling")
                 d["image_link"] = elem["images"]["standard_resolution"]["url"]
+                print("V filter")
                 d["filter"] = elem["filter"]
+                print("V location")
                 d["location"] = elem["location"]["name"]
+                print("V caption")
                 d["caption"] = elem["caption"]["text"]
                 l.append(d)
                 print(d)
