@@ -14,7 +14,7 @@ class MainHandler(tornado.web.RequestHandler):
 
 class ResetHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write("Restart the server")
+        self.write("Restart the server 2")
         print("Killing python")
         os.popen("PullScriptForOmer")
 
