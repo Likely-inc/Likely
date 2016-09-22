@@ -13,7 +13,8 @@ class MainHandler(tornado.web.RequestHandler):
 
 class AppHandler(tornado.web.RequestHandler):
     def get(self):
-        t = instagramConnectionFacade(self.get_argument("code"),"5f46ab2c0ce24bdaa966b3ea9b1b9b2a", "8c5523d19c604c0dac2c66946083a5b4", self.get_argument("Host"))
+        t = instagramConnectionFacade(self.get_argument("code"),"5f46ab2c0ce24bdaa966b3ea9b1b9b2a", "8c5523d19c604c0dac2c66946083a5b4",
+                                      self.get_argument("Host")+"/auth")
         user = t.getUser()
         print(user)
 
