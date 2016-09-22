@@ -29,7 +29,7 @@ class Application(tornado.web.Application):
         }
         handlers = [
             (r"/", MainHandler),
-            (r"/auth", AppHandler),
+            (r"/app", AppHandler),
         ]
 
         tornado.web.Application.__init__(self, handlers, **settings)
