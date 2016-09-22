@@ -25,11 +25,11 @@ class instagramConnectionFacade:
         }
         try:
             r = requests.post(url, data=values)
-            # js = json.dump(r.text[:300])
-            print(r.text[:300])
-            # self.__uName = js["full_name"]
-            # self.__aToken = js["access_token"]
-            # self.__pPicture = js["profile_picture"]
+            js = json.dump(r.text[:300])
+            self.__aToken = js["access_token"]
+            js = js["user"]
+            self.__uName = js["full_name"]
+            self.__pPicture = js["profile_picture"]
         except Exception as e:
             print(e.args)
         # self.__api = InstagramAPI(
