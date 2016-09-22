@@ -118,7 +118,7 @@ def getImageFeatures(photo_url):
             # calculate the mean value of RED color in the photo
             redSum = 0
             for i in range(numOfColors):
-                redSum += properties['dominantColors']['colors'][i]['color']['blue'] * properties['dominantColors']['colors'][i]['pixelFraction']
+                redSum += properties['dominantColors']['colors'][i]['color']['red'] * properties['dominantColors']['colors'][i]['pixelFraction']
             redMean = redSum / 256
             result['colors']['redMean'] = redMean
 
@@ -133,7 +133,7 @@ def getImageFeatures(photo_url):
         # print(landmarks)
         # print(logos)
         # print
-        print(result)
+        # print(result)
 
         rmPhoto(photo_file)
 
