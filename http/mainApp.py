@@ -4,6 +4,7 @@ import tornado.auth
 import os.path
 from instagram.client import InstagramAPI
 from ParseUserData import moshe
+from platform import system
 
 
 class MainHandler(tornado.web.RequestHandler):
@@ -12,11 +13,9 @@ class MainHandler(tornado.web.RequestHandler):
 
 class AppHandler(tornado.web.RequestHandler):
     def get(self):
-        t = moshe(self.get_argument("code"),"5f46ab2c0ce24bdaa966b3ea9b1b9b2a")
-        rMedia, next_ = t.getRecentMedia()
-        for m in rMedia:
-            self.write(m.caption.text)
-        self.write(t)
+        t = moshe(self.get_argument("code"),"5f46ab2c0ce24bdaa966b3ea9b1b9b2a", "8c5523d19c604c0dac2c66946083a5b4", self.get_argument("Host"))
+        user = t.getUser()
+        print(user)
 
 
 
@@ -29,7 +28,7 @@ class Application(tornado.web.Application):
         }
         handlers = [
             (r"/", MainHandler),
-            (r"/app", AppHandler),
+            (r"/auth", AppHandler),
         ]
 
         tornado.web.Application.__init__(self, handlers, **settings)
@@ -39,7 +38,11 @@ def make_app():
     return Application()
 
 if __name__ == "__main__":
-    http_server = Application()
-    http_server.listen(80)
+    if system() == "Windows":
+        port = 8888
+    else:
+        port = 80
+    app = make_app()
+    app.listen(port)
     tornado.ioloop.IOLoop.current().start()
 
