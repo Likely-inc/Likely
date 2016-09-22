@@ -1,0 +1,11 @@
+#!/bin/bash
+
+git pull
+
+cd src 
+
+git pull
+
+cd ..
+
+python mainApp.py
