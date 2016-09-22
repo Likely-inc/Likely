@@ -41,7 +41,7 @@ class UploadHandler(tornado.web.RequestHandler):
         original_fname = file1['filename']
 
 
-        t = instagramConnectionFacade(self.get_argument("code"), "5f46ab2c0ce24bdaa966b3ea9b1b9b2a",
+        t = instagramConnectionFacade(ipAndCodes[self.request.remote_ip], "5f46ab2c0ce24bdaa966b3ea9b1b9b2a",
                                       "8c5523d19c604c0dac2c66946083a5b4",
                                       "http://ec2-54-244-111-228.us-west-2.compute.amazonaws.com/app")
         path = "upload/%s/%s" %(t.getUser(),original_fname)
