@@ -2,6 +2,7 @@ import tornado.ioloop
 import tornado.web
 import tornado.auth
 import os.path
+import json
 from InstaAPI import instagramConnectionFacade
 from platform import system
 
@@ -16,7 +17,7 @@ class AppHandler(tornado.web.RequestHandler):
                                       "http://ec2-54-244-111-228.us-west-2.compute.amazonaws.com/app")
         self.write("Hello "+t.getUser())
         # user = t.getUser()
-        self.write(str(t.getRecentPhotos(5)))
+        self.write(json.dumps(t.getRecentPhotos(5)))
 
 
 
