@@ -49,7 +49,11 @@ class instagramConnectionFacade:
             'ACCESS_TOKEN':self.__aToken,
             'COUNT':str(count),
         }
-        r = requests.post(url, dtat=values)
-        js = json.loads(r.text)
-        print(js)
+        try:
+            print(url, values)
+            r = requests.post(url, dtat=values)
+            js = json.loads(r.text)
+            print(js)
+        except Exception as e:
+            print(e.args)
 
