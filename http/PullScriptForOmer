@@ -9,3 +9,5 @@ cd src
 git pull
 
 cd ..
+
+python mainApp.py
