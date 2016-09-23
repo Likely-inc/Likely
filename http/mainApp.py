@@ -21,7 +21,8 @@ class ResultHandler(tornado.web.RequestHandler):
         d = ipAndInfo[self.request.remote_ip]
         statuses = [("1",10),("2",15),("3",11),("4",29),("5",12),("6",10),("7",35),("8",30),("9",32),("10",30)]
         s = self.parseResults(statuses)
-        self.render("src/LikelyResults.html",nLikes=d["likes"],iPath=d["path"],uName=t.getUser(),pProfile=t.getProfilePic(),caption=d["caption"])
+        self.render("src/LikelyResults.html",nLikes=d["likes"],iPath=d["path"],uName=t.getUser(),
+                    pProfile=t.getProfilePic(),caption=d["caption"], hour_likes=s)
     def parseResults(self, l):
         l.sort(key=lambda x: x[1], reverse=True)
         newL = []
