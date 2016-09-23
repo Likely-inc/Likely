@@ -15,7 +15,7 @@ def train(list_of_dicts, new_photo_dict):
         curdict = {list_of_dicts[i]["filter"]: 1, list_of_dicts[i]["location"]: 1, dow: 1}
         for hour, w in [(-1,0.25), (0, 0.5), (1, 0.25)]:
             curdict["hod_" + str((int(format_time.split()[1])+hour) % 24)] = w
-        googles = imageClassifier.getImageFeatures(list_of_dicts[i]["image_link"])
+        googles = imageClassifier.getImageFeatures(list_of_dicts[i]["image_link"], False)
         for key in googles.keys():
             if type(googles[key]) is float or type(googles[key]) is int:
                 curdict[key] = googles[key]
@@ -41,7 +41,7 @@ def train(list_of_dicts, new_photo_dict):
     print("now with the new picture")
     new_vec = {}
     print(new_photo_dict[0])
-    googles = imageClassifier.getImageFeatures(new_photo_dict[0])
+    googles = imageClassifier.getImageFeatures(new_photo_dict[0], local=True)
     for key in googles.keys():
         if type(googles[key]) is float or type(googles[key]) is int:
             new_vec[key] = googles[key]
@@ -56,16 +56,18 @@ def train(list_of_dicts, new_photo_dict):
     print("done with the new picture")
 
     print("fitting data")
-    data = vectorizer.fit(training_vects)
+    data = vectorizer.transform(training_vects)
     print("fittine new photo")
-    to_predict =vectorizer.fit(new_vec)
+    print ([new_vec])
+    to_predict = vectorizer.transform([new_vec])
 
-    # predictor = linear_model.RidgeCV()
-    # predictor.fit(data, labels)
-
-
-    # return predict(predictor, new_vec)
-    return 42
+    predictor = linear_model.RidgeCV()
+    print("trainnn")
+    predictor.fit(X=data, y=labels)
+    print("predict")
+    prediction = predictor.predict(X=to_predict)
+    print(prediction)
+    return prediction
 
 
 def print_oneline(training_vecs):
