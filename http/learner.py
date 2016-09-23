@@ -16,14 +16,10 @@ def train(list_of_dicts, new_photo_dict):
         for hour, w in [(-1,0.25), (0, 0.5), (1, 0.25)]:
             curdict["hod_" + str((int(format_time.split()[1])+hour) % 24)] = w
         googles = imageClassifier.getImageFeatures(list_of_dicts[i]["image_link"])
-        print("GOOGLES")
-        print(googles)
-        print("end googles")
         for key in googles.keys():
             if type(googles[key]) is float or type(googles[key]) is int:
                 curdict[key] = googles[key]
             else:
-                print(googles[key])
                 for label in googles[key]:
                     if label in ["blueMean", "redMean"]:
                         curdict[label] = googles[key][label]
@@ -39,8 +35,8 @@ def train(list_of_dicts, new_photo_dict):
 
     print_oneline(training_vects)
 
-    # vectorizer = sklearn.feature_extraction.DictVectorizer()
-    # vectorizer.fit_transform(training_vects)
+    vectorizer = sklearn.feature_extraction.DictVectorizer()
+    vectorizer.fit_transform(training_vects)
     #
     # data = vectorizer.fit(training_vects)
 
@@ -49,7 +45,7 @@ def train(list_of_dicts, new_photo_dict):
 
 
     # return predict(predictor, new_vec)
-    return 37
+    return 42
 
 
 def print_oneline(training_vecs):
