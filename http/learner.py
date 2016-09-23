@@ -58,7 +58,8 @@ def train(list_of_dicts, new_photo_dict):
     print("fitting data")
     data = vectorizer.fit(training_vects)
     print("fittine new photo")
-    to_predict =vectorizer.fit(new_vec)
+    print (new_vec)
+    to_predict = vectorizer.fit(new_vec)
 
     # predictor = linear_model.RidgeCV()
     # predictor.fit(data, labels)
