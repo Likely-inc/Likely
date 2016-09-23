@@ -23,7 +23,7 @@ class ResultHandler(tornado.web.RequestHandler):
         s = self.parseResults(statuses)
         self.render("src/LikelyResults.html", nLikes=d["likes"], iPath=d["path"],
                     uName=t.getUser(), pProfile=t.getProfilePic(),
-                    caption=d["caption"], hour_likes=s)
+                    caption=d["caption"])
     def parseResults(self, l):
         l.sort(key=lambda x: x[1], reverse=True)
         newL = []
