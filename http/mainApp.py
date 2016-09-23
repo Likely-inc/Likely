@@ -62,7 +62,17 @@ class UploadHandler(tornado.web.RequestHandler):
         output_file = open(path, 'wb+')
         output_file.write(file1['body'])
         likes = lrn.train(t.getRecentPhotos(1000),[path,comment])
+        print("==========================")
+        print("==========================")
+        print("==========================")
+        print("==========================")
+        print("==========================")
         print(likes)
+        print("==========================")
+        print("==========================")
+        print("==========================")
+        print("==========================")
+        print("==========================")
         ipAndInfo[self.request.remote_ip] = {"likes":likes,
                                              "path":"upload/"+t.getUser()+"/"+original_fname,
                                              "caption":comment}
