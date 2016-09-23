@@ -37,8 +37,27 @@ def train(list_of_dicts, new_photo_dict):
 
     vectorizer = sklearn.feature_extraction.DictVectorizer()
     vectorizer.fit_transform(training_vects)
-    #
-    # data = vectorizer.fit(training_vects)
+
+    print("now with the new picture")
+    new_vec = {}
+    googles = imageClassifier.getImageFeatures(new_photo_dict[0])
+    for key in googles.keys():
+        if type(googles[key]) is float or type(googles[key]) is int:
+            new_vec[key] = googles[key]
+        else:
+            for label in googles[key]:
+                if label in ["blueMean", "redMean"]:
+                    new_vec[label] = googles[key][label]
+                elif label in ["joyLikelihood", "sorrowLikelihood", "angerLikelihood", "surpriseLikelihood"]:
+                    new_vec[label + googles[key][label]] = 1
+                else:
+                    new_vec[label] = 1
+    print("done with the new picture")
+
+    print("fitting data")
+    data = vectorizer.fit(training_vects)
+    print("fittine new photo")
+    to_predict =vectorizer.fit(new_vec)
 
     # predictor = linear_model.RidgeCV()
     # predictor.fit(data, labels)
