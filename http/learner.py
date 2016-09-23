@@ -16,6 +16,9 @@ def train(list_of_dicts, new_photo_dict):
         for hour, w in [(-1,0.25), (0, 0.5), (1, 0.25)]:
             curdict["hod_" + str((int(format_time.split()[1])+hour) % 24)] = w
         googles = imageClassifier.getImageFeatures(list_of_dicts[i]["image_link"])
+        print("GOOGLES")
+        print(googles)
+        print("end googles")
         for key in googles.keys():
             for label in googles[key]:
                 if label in ["blueMean", "redMean"]:
