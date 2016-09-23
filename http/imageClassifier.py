@@ -33,7 +33,7 @@ def rmPhoto(photo_filename):
     os.remove(photo_filename)
 
 
-def getImageFeatures(photo_url):
+def getImageFeatures(photo_url, local=False):
     """
     Get the features of the given photo file.
     :param photo_file:
@@ -44,8 +44,11 @@ def getImageFeatures(photo_url):
     service = discovery.build('vision', 'v1', credentials=credentials,
                               discoveryServiceUrl=DISCOVERY_URL)
 
-    photo_file = "../images/temp.jpg"
-    downloadPhoto(photo_url, photo_file)
+    photo_file = photo_url
+
+    if not local:
+        photo_file = "../images/temp.jpg"
+        downloadPhoto(photo_url, photo_file)
 
     with open(photo_file, 'rb') as image:
         image_content = base64.b64encode(image.read())
@@ -139,7 +142,8 @@ def getImageFeatures(photo_url):
         # print
         # print(result)
 
-        rmPhoto(photo_file)
+        if not local:
+            rmPhoto(photo_file)
 
         return result
 
