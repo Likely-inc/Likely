@@ -67,7 +67,7 @@ def train(list_of_dicts, new_photo_dict):
     print("predict")
     prediction = predictor.predict(X=to_predict)
     print(prediction)
-    return prediction
+    return int(prediction[0])
 
 
 def print_oneline(training_vecs):
