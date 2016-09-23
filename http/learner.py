@@ -65,7 +65,9 @@ def train(list_of_dicts, new_photo_dict):
     print("trainnn")
     predictor.fit(X=data, y=labels)
     print("predict")
-    return predictor.predict(X=to_predict)
+    prediction = predictor.predict(X=to_predict)
+    print(prediction)
+    return prediction
 
 
 def print_oneline(training_vecs):
