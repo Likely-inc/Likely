@@ -20,11 +20,17 @@ def train(list_of_dicts, new_photo_dict):
         print(googles)
         print("end googles")
         for key in googles.keys():
-            for label in googles[key]:
-                if label in ["blueMean", "redMean"]:
-                    curdict[label] = googles[key][label]
-                else:
-                    curdict[label] = 1
+            if type(googles[key]) is float or type(googles[key]) is int:
+                curdict[key] = googles[key]
+            else:
+                print(googles[key])
+                for label in googles[key]:
+                    if label in ["blueMean", "redMean"]:
+                        curdict[label] = googles[key][label]
+                    elif label in ["joyLikelihood", "sorrowLikelihood", "angerLikelihood", "surpriseLikelihood"]:
+                        curdict[label + googles[key][label]] = 1
+                    else:
+                        curdict[label] = 1
         training_vects.append(curdict)
         labels.append(list_of_dicts[i]["likes"])
 
