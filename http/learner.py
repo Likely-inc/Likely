@@ -20,7 +20,7 @@ def train(list_of_dicts, new_photo_dict):
         print(googles)
         print("end googles")
         for key in googles.keys():
-            if googles[key] is float or googles[key] is int:
+            if type(googles[key]) is float or type(googles[key]) is int:
                 curdict[key] = googles[key]
             else:
                 print(googles[key])
