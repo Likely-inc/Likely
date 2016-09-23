@@ -13,6 +13,7 @@ from oauth2client.client import GoogleCredentials
 
 DISCOVERY_URL = 'https://{api}.googleapis.com/$discovery/rest?version={apiVersion}'
 
+
 def downloadPhoto(photo_url, photo_dest_filename):
     """
     Downloads the photo in photo_url to the given destination.
@@ -22,6 +23,7 @@ def downloadPhoto(photo_url, photo_dest_filename):
     """
     urllib.request.urlretrieve(photo_url, photo_dest_filename)
 
+
 def rmPhoto(photo_filename):
     """
     Remove the file in the given filename
@@ -29,6 +31,7 @@ def rmPhoto(photo_filename):
     :return:
     """
     os.remove(photo_filename)
+
 
 def getImageFeatures(photo_url):
     """
@@ -40,6 +43,7 @@ def getImageFeatures(photo_url):
     credentials = GoogleCredentials.get_application_default()
     service = discovery.build('vision', 'v1', credentials=credentials,
                               discoveryServiceUrl=DISCOVERY_URL)
+
     photo_file = "../images/temp.jpg"
     downloadPhoto(photo_url, photo_file)
 
@@ -75,13 +79,11 @@ def getImageFeatures(photo_url):
 
         labels = ['noLabels']
         landmarks = ['noLandmarks']
-        faces = ['noFaces']
         logos = ['noLogos']
 
-        result = {'landmarks': landmarks, 'labels': labels, 'faces': faces,'colors': {'blueMean': 0, 'redMean': 0}, "logos": logos}
+        result = {'landmarks': landmarks, 'labels': labels, 'blueMean': 0, 'redMean': 0, 'logos': logos, 'joyLikelihood': 'UNKNOWN', 'sorrowLikelihood': 'UNKNOWN', 'angerLikelihood': 'UNKNOWN', 'surpriseLikelihood': 'UNKNOWN'}
 
         response = service_request.execute()
-
 
         if 'landmarkAnnotations' in response['responses'][0]:
             landmarks = response['responses'][0]['landmarkAnnotations']
@@ -96,13 +98,13 @@ def getImageFeatures(photo_url):
         if 'faceAnnotations' in response['responses'][0]:
             faces = response['responses'][0]['faceAnnotations']
             if 'joyLikelihood' in faces:
-                result['faces'].append({'joyLikelihood': faces['joyLikelihood']}) #todo fix
+                result['joyLikelihood'].append({'joyLikelihood': faces['joyLikelihood']})  # todo fix
             if 'sorrowLikelihood' in faces:
-                result['faces'].append({'sorrowLikelihood': faces['sorrowLikelihood']})
+                result['sorrowLikelihood'].append({'sorrowLikelihood': faces['sorrowLikelihood']})
             if 'angerLikelihood' in faces:
-                result['faces'].append({'angerLikelihood': faces['angerLikelihood']})
+                result['angerLikelihood'].append({'angerLikelihood': faces['angerLikelihood']})
             if 'surpriseLikelihood' in faces:
-                result['faces'].append({'surpriseLikelihood': faces['surpriseLikelihood']})
+                result['surpriseLikelihood'].append({'surpriseLikelihood': faces['surpriseLikelihood']})
 
         if 'imagePropertiesAnnotation' in response['responses'][0]:
             properties = response['responses'][0]['imagePropertiesAnnotation']
@@ -111,20 +113,22 @@ def getImageFeatures(photo_url):
             # calculate the mean value of BLUE color in the photo
             blueSum = 0
             for i in range(numOfColors):
-                blueSum += properties['dominantColors']['colors'][i]['color']['blue'] * properties['dominantColors']['colors'][i]['pixelFraction']
+                blueSum += properties['dominantColors']['colors'][i]['color']['blue'] * \
+                           properties['dominantColors']['colors'][i]['pixelFraction']
             blueMean = blueSum / 256
-            result['colors']['blueMean'] = blueMean
+            result['blueMean'] = blueMean
 
             # calculate the mean value of RED color in the photo
             redSum = 0
             for i in range(numOfColors):
-                redSum += properties['dominantColors']['colors'][i]['color']['blue'] * properties['dominantColors']['colors'][i]['pixelFraction']
+                redSum += properties['dominantColors']['colors'][i]['color']['red'] * \
+                          properties['dominantColors']['colors'][i]['pixelFraction']
             redMean = redSum / 256
-            result['colors']['redMean'] = redMean
+            result['redMean'] = redMean
 
-        if 'logoAnnotations' in response['responses'][0]:
-            logos = response['responses'][0]['logoAnnotations']
-            result['logos'] = logos
+        # if 'logoAnnotations' in response['responses'][0]:
+            # logos = response['responses'][0]['logoAnnotations']
+            # result['logos'].append(logos['description'])
 
         # debug prints, todo remove
         # print(labels)
@@ -133,7 +137,7 @@ def getImageFeatures(photo_url):
         # print(landmarks)
         # print(logos)
         # print
-        print(result)
+        # print(result)
 
         rmPhoto(photo_file)
 
@@ -142,6 +146,7 @@ def getImageFeatures(photo_url):
 
 def main(photo_file):
     getImageFeatures(photo_file)
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
