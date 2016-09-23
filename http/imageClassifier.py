@@ -126,9 +126,9 @@ def getImageFeatures(photo_url):
             redMean = redSum / 256
             result['redMean'] = redMean
 
-        if 'logoAnnotations' in response['responses'][0]:
-            logos = response['responses'][0]['logoAnnotations']
-            result['logos'].append(logos['description'])
+        # if 'logoAnnotations' in response['responses'][0]:
+            # logos = response['responses'][0]['logoAnnotations']
+            # result['logos'].append(logos['description'])
 
         # debug prints, todo remove
         # print(labels)
