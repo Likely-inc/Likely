@@ -6,6 +6,7 @@ import json
 from InstaAPI import instagramConnectionFacade
 from platform import system
 import learner as lrn
+from random import randint
 
 ipAndCodes = dict()
 ipAndInfo = dict()
@@ -19,7 +20,7 @@ class ResultHandler(tornado.web.RequestHandler):
     def get(self):
         t = ipAndCodes[self.request.remote_ip]
         d = ipAndInfo[self.request.remote_ip]
-        statuses = [("1",10),("2",15),("3",11),("4",29),("5",12),("6",10),("7",35),("8",30),("9",32),("10",30)]
+        statuses = self.generateResults(d["likes"])
         s = self.parseResults(statuses)
         self.render("src/LikelyResults.html",nLikes=d["likes"],iPath=d["path"],uName=t.getUser(),
                     pProfile=t.getProfilePic(),caption=d["caption"], hour_likes=s)
@@ -31,6 +32,21 @@ class ResultHandler(tornado.web.RequestHandler):
             newL.append((elem[0], elem[1], int((elem[1] / maxV) * 100)))
         newL.sort(key=lambda x: int(x[0]))
         return newL
+
+    def generateResults(self, i):
+        UPPERBOUND = i*0.3
+        LOWERBOUND = i*0.3*-1
+        l = []
+        l.append(("0",i))
+        for i in range(1,10):
+            if(i == 3) or (i==4) or (i==5):
+                l.append((str(i), i + randint(0, int(UPPERBOUND+3))))
+                continue
+            l.append((str(i),i+randint(int(LOWERBOUND),int(UPPERBOUND))))
+        return l
+
+
+
 
 
 class ResetHandler(tornado.web.RequestHandler):
