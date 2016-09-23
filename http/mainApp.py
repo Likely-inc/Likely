@@ -21,6 +21,13 @@ class ResultHandler(tornado.web.RequestHandler):
         d = ipAndInfo[self.request.remote_ip]
         statuses = [("1",10),("2",15),("3",11),("4",29),("5",12),("6",10),("7",35),("8",30),("9",32),("10",30)]
         s = self.parseResults(statuses)
+        print(d["likes"])
+        print(d["path"])
+        print(d["caption"])
+        print("user name")
+        print(t.getUser())
+        print("profile pic")
+        print(t.getProfilePic())
         self.render("src/LikelyResults.html",nLikes=d["likes"],iPath=d["path"],uName=t.getUser(),pProfile=t.getProfilePic(),caption=d["caption"])
     def parseResults(self, l):
         l.sort(key=lambda x: x[1], reverse=True)
