@@ -23,6 +23,7 @@ def train(list_of_dicts, new_photo_dict):
             if googles[key] is float or googles[key] is int:
                 curdict[key] = googles[key]
             else:
+                print(googles[key])
                 for label in googles[key]:
                     if label in ["blueMean", "redMean"]:
                         curdict[label] = googles[key][label]
