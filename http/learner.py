@@ -63,9 +63,9 @@ def train(list_of_dicts, new_photo_dict):
 
     predictor = linear_model.RidgeCV()
     print("trainnn")
-    predictor.fit(data, labels)
+    predictor.fit(X=data, y=labels)
     print("predict")
-    return predictor.predict([new_vec])
+    return predictor.predict(new_vec)
 
 
 def print_oneline(training_vecs):
