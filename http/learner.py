@@ -14,6 +14,8 @@ def train(list_of_dicts, new_photo_dict):
         format_time = datetime.fromtimestamp(float(this_time)).strftime("%A %H")
         dow = "DOW_" + format_time.split()[0]
         curdict = {list_of_dicts[i]["filter"]: 1, list_of_dicts[i]["location"]: 1, dow: 1}
+        for word in list_of_dicts[i]["caption"]:
+            curdict[word] = 1
         for hour, w in [(-1,0.25), (0, 0.5), (1, 0.25)]:
             curdict["hod_" + str((int(format_time.split()[1])+hour) % 24)] = w
         googles = imageClassifier.getImageFeatures(list_of_dicts[i]["image_link"], False)
