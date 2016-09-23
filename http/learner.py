@@ -9,7 +9,7 @@ from datetime import datetime
 def train(list_of_dicts, new_photo_dict):
     training_vects = []
     labels = []
-    for i in range (len(list_of_dicts)):
+    for i in range(len(list_of_dicts)):
         this_time = list_of_dicts[i]['created_time']
         format_time = datetime.fromtimestamp(float(this_time)).strftime("%A %H")
         dow = "DOW_" + format_time.split()[0]
@@ -70,12 +70,13 @@ def train(list_of_dicts, new_photo_dict):
     print ([new_vec])
     to_predict = vectorizer.transform([new_vec])
 
-    predictor = linear_model.RidgeCV()
+    predictor = linear_model.RidgeCV(alphas=[0.1, 1, 10])
     print("trainnn")
     predictor.fit(X=data, y=labels)
     print("predict")
     prediction = int(predictor.predict(X=to_predict)[0])
     print(prediction)
+    print("cv_err {0}".format(predictor.score(X=data, y=labels)))
     return prediction
 
 
