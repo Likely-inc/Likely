@@ -68,7 +68,7 @@ class UploadHandler(tornado.web.RequestHandler):
             os.makedirs("src/upload/"+t.getUser())
         output_file = open(path, 'wb+')
         output_file.write(file1['body'])
-        likes = lrn.train(t.getRecentPhotos(2),[path,comment])
+        likes = lrn.train(t.getRecentPhotos(1000),[path,comment])
         print("==========================")
         print("==========================")
         print("==========================")
