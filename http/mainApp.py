@@ -33,16 +33,16 @@ class ResultHandler(tornado.web.RequestHandler):
         newL.sort(key=lambda x: int(x[0]))
         return newL
 
-    def generateResults(self, i):
-        UPPERBOUND = i*0.3
-        LOWERBOUND = i*0.3*-1
+    def generateResults(self, likes):
+        UPPERBOUND = likes*0.3
+        LOWERBOUND = likes*0.3*-1
         l = []
-        l.append(("0",i))
+        l.append(("0",likes))
         for i in range(1,10):
             if(i == 3) or (i==4) or (i==5):
-                l.append((str(i), i + randint(0, int(UPPERBOUND+3))))
+                l.append((str(i), likes + randint(0, int(UPPERBOUND+3))))
                 continue
-            l.append((str(i),i+randint(int(LOWERBOUND),int(UPPERBOUND))))
+            l.append((str(i),likes+randint(int(LOWERBOUND),int(UPPERBOUND))))
         return l
 
 
