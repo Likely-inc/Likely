@@ -31,16 +31,12 @@ def train(list_of_dicts, new_photo_dict):
         training_vects.append(curdict)
         labels.append(list_of_dicts[i]["likes"])
 
-    # vectorizer = sklearn.feature_extraction.DictVectorizer()
-    # vectorizer.fit_transform(list_of_dicts)
-
     print_oneline(training_vects)
 
     vectorizer = sklearn.feature_extraction.DictVectorizer()
     vectorizer.fit_transform(training_vects)
 
     print("now with the new picture")
-    new_vec = {}
     cur_time = time.time()
     format_time = datetime.fromtimestamp(cur_time).strftime("%A %H")
     dow = "DOW_" + format_time.split()[0]
@@ -60,6 +56,10 @@ def train(list_of_dicts, new_photo_dict):
                     new_vec[label + googles[key][label]] = 1
                 else:
                     new_vec[label] = 1
+    for word in new_photo_dict[1]:
+        new_vec[word] = 1
+
+
     print("done with the new picture")
 
     print("fitting data")
