@@ -40,6 +40,7 @@ def train(list_of_dicts, new_photo_dict):
 
     print("now with the new picture")
     new_vec = {}
+    print(new_photo_dict[0])
     googles = imageClassifier.getImageFeatures(new_photo_dict[0])
     for key in googles.keys():
         if type(googles[key]) is float or type(googles[key]) is int:
