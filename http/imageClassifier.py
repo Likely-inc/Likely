@@ -128,7 +128,7 @@ def getImageFeatures(photo_url):
 
         if 'logoAnnotations' in response['responses'][0]:
             logos = response['responses'][0]['logoAnnotations']
-            result['logos'] = logos
+            result['logos'].append(logos['description'])
 
         # debug prints, todo remove
         # print(labels)
