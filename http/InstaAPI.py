@@ -11,13 +11,13 @@ class instagramConnectionFacade:
     __aToken = None
     __pPicture = None
     __uId = None
-    def __init__(self, client_id, appId, appSecret, URI):
+    def __init__(self, client_id, appId, appSecret, instaURI):
         url = "https://api.instagram.com/oauth/access_token"
         values = {
             'client_id':appId,
             'client_secret':appSecret,
             'grant_type':'authorization_code',
-            'redirect_uri':URI,
+            'redirect_uri':instaURI,
             'code':client_id
         }
         try:
