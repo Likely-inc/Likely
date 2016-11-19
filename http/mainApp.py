@@ -116,6 +116,6 @@ if __name__ == "__main__":
         port = 80
     app = make_app()
     app.listen(port)
-    print("The server is UP and running")
+    print("The server is UP and running after change")
     tornado.ioloop.IOLoop.current().start()
 
