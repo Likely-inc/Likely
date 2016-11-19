@@ -20,8 +20,8 @@ class instagramConnectionFacade:
             'redirect_uri':instaURI,
             'code':client_id
         }
+        print(values)
         try:
-            print(values)
             r = requests.post(url, data=values)
             js = json.loads(r.text)
             self.__aToken = js["access_token"]
